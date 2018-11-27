@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import {SensorData} from '../mock/MockObjects.js';
 import { MonoText } from '../components/StyledText';
 
 export default class SeatScreen extends React.Component {
@@ -19,7 +19,7 @@ export default class SeatScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>hej</Text>
+        <Text>{SensorData.time}</Text>
       </View>
     );
   }
