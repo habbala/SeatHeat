@@ -2,7 +2,13 @@ var { buildSchema } = require('graphql');
 export const schema = buildSchema(`
     type Query {
         sensor: SensorData,
-        sensorUnique(sensorNumber: Int, plane: Int): SensorData
+        sensorUnique(sensorNumber: Int, plane: Int): SensorData,
+        level: Levels,
+    },
+    type Levels {
+        group: Int,
+        alone: Int,
+        fika: Int
     },
     type SensorData {
         time: String,
