@@ -1,31 +1,21 @@
 import React from 'react';
 import {
-  Image,
+  ImageBackground,
   Alert,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   TouchableHighlight,
-  Animated,
 } from 'react-native';
-import {SensorData} from '../mock/MockObjects.js';
+import TagComponent from '../components/TagComponent/TagComponent.js';
 
 export default class SeatScreen extends React.Component {
   constructor(props){
     super(props);
 
     this.state={
-      tagOpen: false,
-      tagStyle: {
-        backgroundColor: '#fff',
-        width: new Animated.Value(0),
-        height: new Animated.Value(0),
-        borderRadius: 6,
-        position: 'absolute',
-        left: 50,
-        top: 50,
-      },
+      tagOpen: true,
+      filter: '',
     }
   }
 
@@ -33,38 +23,17 @@ export default class SeatScreen extends React.Component {
     title: 'app.json',
   };
 
-  _clicker(){
-    Alert.alert('You tapped the button!');
+  _setFilter(filter){
+    this.setState({filter: filter});
+    Alert.alert('Filter: ' + this.state.filter);
   }
 
   _clickTag(){
     if(this.state.tagOpen){
-      this._closeTag();
       this.setState({tagOpen: false});
     } else {
-      this._openTag();
       this.setState({tagOpen: true});
     }
-  }
-
-  _openTag(){
-    Animated.timing(this.state.tagStyle.height, {
-      toValue: 100
-    }).start();
-
-    Animated.timing(this.state.tagStyle.width, {
-      toValue: 100
-    }).start();
-  }
-
-  _closeTag(){
-    Animated.timing(this.state.tagStyle.height, {
-      toValue: 0
-    }).start();
-
-    Animated.timing(this.state.tagStyle.width, {
-      toValue: 0
-    }).start();
   }
 
   render() {
@@ -91,16 +60,19 @@ export default class SeatScreen extends React.Component {
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         width:60,
         height:60,
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       filterIcon:{
-        flex: 1,
         resizeMode: 'contain',
-        overflow: 'hidden',
-        marginLeft: 10,
-        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%', 
+        height: '90%',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       menuText: {
-        flex: 1,
         textAlign: 'center',
       },
       table:{
@@ -114,34 +86,27 @@ export default class SeatScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.mapContainer}>
           <TouchableHighlight style={styles.table} onPress={this._clickTag.bind(this)}>
-            <Animated.View style={this.state.tagStyle}>
-              <Text>{SensorData.time}</Text>
-              <Text>{SensorData.dd.light}</Text>
-              <Text>{SensorData.dd.pir}</Text> 
-            </Animated.View>
+            <TagComponent tagOpen={this.state.tagOpen}/>
           </TouchableHighlight> 
         </View>
 
         <View style={styles.bottomMenu} >
-          <TouchableHighlight style={styles.filterButton} onPress={this._clicker.bind(this)}>
-            <View>
-              <Image style={styles.filterIcon} source={require('../assets/images/group.png')} capInsets={{left: 5, right: 5, bottom: 5, top: 5}}/>
-              <Text style={styles.menuText}>Groups</Text>
-            </View>   
+          <TouchableHighlight style={styles.filterButton} onPress={this._setFilter.bind(this)}>
+            <ImageBackground style={styles.filterIcon} source={require('../assets/images/group.png')} capInsets={{left: 5, right: 5, bottom: 5, top: 5}}>
+              <Text style={styles.menuText}>GRUPP</Text>
+            </ImageBackground>
           </TouchableHighlight>
 
-          <TouchableHighlight style={styles.filterButton} onPress={this._clicker.bind(this)}>
-            <View>
-              <Image style={styles.filterIcon} source={require('../assets/images/group.png')}/>
-              <Text style={styles.menuText}>Study</Text>
-            </View>
+          <TouchableHighlight style={styles.filterButton} onPress={this._setFilter.bind(this)}>
+            <ImageBackground style={styles.filterIcon} source={require('../assets/images/solo.png')}>
+            <Text style={styles.menuText}>PLUGG</Text>
+            </ImageBackground>
           </TouchableHighlight>
 
-          <TouchableHighlight style={styles.filterButton} onPress={this._clicker.bind(this)}>  
-            <View>
-              <Image style={styles.filterIcon} source={require('../assets/images/group.png')}/>
-              <Text style={styles.menuText}>Hang</Text>    
-            </View>    
+          <TouchableHighlight style={styles.filterButton} onPress={this._setFilter.bind(this)}>  
+            <ImageBackground style={styles.filterIcon} source={require('../assets/images/coffee.png')}>
+              <Text style={styles.menuText}>FIKA</Text>
+            </ImageBackground>   
           </TouchableHighlight>
         </View>
       </View>

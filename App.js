@@ -6,7 +6,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import AppNavigator from './navigation/AppNavigator';
 const client = new ApolloClient({
-  uri: "http://130.239.231.196:4000/graphql" //change this ip-adress 
+  uri: "http://130.239.239.58:4000/graphql" //change this ip-adress 
 });
 
 
