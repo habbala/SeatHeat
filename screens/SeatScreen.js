@@ -17,9 +17,27 @@ export default class SeatScreen extends React.Component {
   };
 
   render() {
+
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+      },
+
+      bottomMenu: {
+        flex: 1,
+        backgroundColor: 'black',
+        flexDirection: 'column',
+        marginBottom: 0,
+      },
+    });
+
     return (
-      <View>
-        <Text>{SensorData.time}</Text>
+      <View style={styles.container}>
+        <View style={styles.bottomMenu}>
+          <Text>{SensorData.time}</Text>
+        </View>
       </View>
     );
   }
