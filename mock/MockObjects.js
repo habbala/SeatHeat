@@ -9,3 +9,14 @@ export const SensorData = {
         "vdd":3.597
     }
 }
+
+export const TableData = {
+    Tables: [
+        {"Chairs": 4, 
+        pos: {xPos: 100, yPos: 200}, 
+        },
+        {"Chairs": 2, 
+        pos: {xPos: 200, yPos: 50}
+        }
+    ],
+}
