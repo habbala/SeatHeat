@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 54599,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://wk-74a.sarahmhale.seatheat.exp.direct",
+  "packagerNgrokUrl": "https://packager.wk-74a.sarahmhale.seatheat.exp.direct",
+  "ngrokPid": 61673
 }
