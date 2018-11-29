@@ -7,7 +7,8 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-import TagComponent from '../components/TagComponent/TagComponent.js';
+import TableComponent from '../components/TableComponent/TableComponent.js';
+import {TableData} from '../mock/MockObjects.js';
 
 export default class SeatScreen extends React.Component {
   constructor(props){
@@ -16,6 +17,7 @@ export default class SeatScreen extends React.Component {
     this.state={
       tagOpen: true,
       filter: '',
+      Tables: TableData.Tables,
     }
   }
 
@@ -64,30 +66,26 @@ export default class SeatScreen extends React.Component {
         justifyContent: 'center',
       },
       filterIcon:{
-        resizeMode: 'contain',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '90%', 
-        height: '90%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        width: '50%', 
+        height: '50%',
       },
       menuText: {
         textAlign: 'center',
       },
-      table:{
-        width: 50,
-        height: 50,
-        backgroundColor: '#C4C4C4',
-      }
     });
 
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>
-          <TouchableHighlight style={styles.table} onPress={this._clickTag.bind(this)}>
-            <TagComponent tagOpen={this.state.tagOpen}/>
-          </TouchableHighlight> 
+
+        {this.state.Tables.map((table, index) => {
+          return (
+            <TableComponent table={table}/>
+          );
+        })}
+          
         </View>
 
         <View style={styles.bottomMenu} >

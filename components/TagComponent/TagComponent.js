@@ -16,27 +16,44 @@ export default class TagComponent extends React.Component{
                 left: 50,
                 top: 50,
             },
+            textStyle:{
+                fontSize: new Animated.Value(0),
+            }
         }
     }
 
     _openTag(){
         Animated.timing(this.state.tagStyle.height, {
-          toValue: 100
+          toValue: 100,
+          duration: 200,
         }).start();
     
         Animated.timing(this.state.tagStyle.width, {
-          toValue: 100
+          toValue: 100,
+          duration: 200,
         }).start();
+
+        Animated.timing(this.state.textStyle.fontSize, {
+            toValue: 24,
+            duration: 200,
+          }).start();
     }
     
     _closeTag(){
         Animated.timing(this.state.tagStyle.height, {
-          toValue: 0
+          toValue: 0,
+          duration: 190,
         }).start();
     
         Animated.timing(this.state.tagStyle.width, {
-          toValue: 0
+          toValue: 0,
+          duration: 100,
         }).start();
+
+        Animated.timing(this.state.textStyle.fontSize, {
+            toValue: 0,
+            duration: 1,
+          }).start();
     }
 
     render(){
@@ -49,9 +66,9 @@ export default class TagComponent extends React.Component{
 
         return(
             <Animated.View style={this.state.tagStyle}>
-                <Text>{SensorData.time}</Text>
-                <Text>{SensorData.dd.light}</Text>
-                <Text>{SensorData.dd.pir}</Text> 
+                <Animated.Text style={this.state.textStyle}>Light: {SensorData.dd.light}</Animated.Text>
+                <Animated.Text style={this.state.textStyle}>People: {SensorData.dd.pir}</Animated.Text> 
+                <Animated.Text style={this.state.textStyle}>Chairs: {this.props.table.Chairs}</Animated.Text> 
             </Animated.View>
         );
     }
