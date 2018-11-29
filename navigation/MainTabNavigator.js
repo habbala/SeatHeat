@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import SeatScreen from '../screens/SeatScreen';
+import LekScreen from '../screens/LekScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -68,9 +69,26 @@ SeatStack.navigationOptions = {
   ),
 };
 
+const LekStack = createStackNavigator({
+  Lek: LekScreen,
+});
+
+LekStack.navigationOptions = {
+  tabBarLabel: 'Lek',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   SeatStack,
+  LekStack,
 });
+
+
